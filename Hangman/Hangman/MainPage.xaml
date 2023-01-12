@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hangman.MainPage">
+    <ContentPage.Resources>
+        <Color x:Key="letters">#000</Color>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions=".5*,.4*" BackgroundColor="White">
+        <VerticalStackLayout>
+            <Label Text="Erros: 0 of 6"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="{StaticResource letters}"/>
+            <Image Source="img0.jpg"  HeightRequest="200"/>
+            <Label FontSize="40"
+                   HorizontalOptions="Center"
+                   Text="{Binding Spotlight}"
+                   VerticalOptions="Center"
+                    TextColor="{StaticResource letters}"
+                   />
+            <Label Text="You Lost!"
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                    TextColor="{StaticResource letters}"
+            />
+            <Button
+                HorizontalOptions="Center"
+                Text="Reset"
+                WidthRequest="100"
+                BackgroundColor="Black"
+                />
+        </VerticalStackLayout>
+        <FlexLayout Grid.Row="1" Wrap="Wrap" JustifyContent="SpaceEvenly"
+                    BindableLayout.ItemsSource="{Binding Characters}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Button HeightRequest="50"
+                    WidthRequest="50"
+                    Text="{Binding .}"/>
+
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+           
+        </FlexLayout>
+    
+    </Grid>
+    
+
+</ContentPage>
