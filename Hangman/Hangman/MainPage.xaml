@@ -7,7 +7,7 @@
     </ContentPage.Resources>
 
     <Grid RowDefinitions=".5*,.4*" BackgroundColor="White">
-        <VerticalStackLayout>
+        <VerticalStackLayout Spacing="10">
             <Label Text="Erros: 0 of 6"
                FontAttributes="Bold"
                HorizontalOptions="Center"
@@ -19,7 +19,7 @@
                    VerticalOptions="Center"
                     TextColor="{StaticResource letters}"
                    />
-            <Label Text="You Lost!"
+            <Label Text="{Binding  Message}"
                    FontSize="Large"
                    HorizontalOptions="Center"
                     TextColor="{StaticResource letters}"
@@ -37,7 +37,8 @@
                 <DataTemplate>
                     <Button HeightRequest="50"
                     WidthRequest="50"
-                    Text="{Binding .}"/>
+                    Text="{Binding .}"
+                    Clicked="Button_Clicked"/>
 
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
