@@ -29,13 +29,16 @@
             <Button
                 HorizontalOptions="Center"
                 Text="Reset"
+                TextColor="White"
                 WidthRequest="100"
                 BackgroundColor="Black"
+                Clicked="ResetGame"
                 
                 />
         </VerticalStackLayout >
         <FlexLayout  Grid.Row="1" Wrap="Wrap" JustifyContent="SpaceEvenly"
-                    BindableLayout.ItemsSource="{Binding Characters}">
+                    BindableLayout.ItemsSource="{Binding Characters}"
+                     x:Name ="lettersContainer">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <Button HeightRequest="48"

@@ -59,8 +59,56 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     #endregion
     #region Fields
     List<string> words = new List<string>(){
-       "hola",
-       "adios"
+      "shatter",
+    "default",
+    "warm",
+    "sword",
+    "throne",
+    "leak",
+    "amber",
+    "hotdog",
+    "auction",
+    "resident",
+    "immune",
+    "hope",
+    "decisive",
+    "pardon",
+    "drama",
+    "ceiling",
+    "firefighter",
+    "first",
+    "export",
+    "barrel",
+    "affect",
+    "spite",
+    "name",
+    "cotton",
+    "silence",
+    "condition",
+    "lead",
+    "conspiracy",
+    "intervention",
+    "investment",
+    "dentist",
+    "scramble",
+    "sculpture",
+    "allowance",
+    "environment",
+    "margin",
+    "start",
+    "spin",
+    "broccoli",
+    "friendly",
+    "science",
+    "relate",
+    "finish",
+    "drop",
+    "slump",
+    "care",
+    "fork",
+    "mass",
+    "stool",
+    "basic"
 };
 
 
@@ -137,9 +185,30 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
         if (mistakes == maxWrong)
         {
             Message = "You Lost!!!";
+            DisableLetters();
         }
     }
 
+    private void DisableLetters()
+    {
+       foreach (Button children in lettersContainer.Children)
+        {
+            if(children!= null)
+            {
+                children.IsEnabled=false;
+            }
+        }
+    }
+    private void EnableLetters()
+    {
+        foreach (Button children in lettersContainer.Children)
+        {
+            if (children != null)
+            {
+                children.IsEnabled = true;
+            }
+        }
+    }
     private void UpdateStatus()
     {
         GameStatus = $"Erros: {mistakes} of {maxWrong}";
@@ -149,7 +218,20 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
         if (Spotlight.Replace(" ", "") == answer)
         {
             Message = "You Win !!!";
+            DisableLetters();
         }
+    }
+
+    private void ResetGame(object sender, EventArgs e)
+    {
+        mistakes= 0;
+        guessed= new List<char>();
+        Message = "You Can Is To Easy";
+        CurrentImage = "img0.jpg";
+        PickWord();
+        CalculateWord(answer, guessed);
+        UpdateStatus();
+        EnableLetters();
     }
 }
 
