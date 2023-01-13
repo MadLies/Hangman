@@ -6,13 +6,14 @@
         <Color x:Key="letters">#000</Color>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions=".5*,.4*" BackgroundColor="White">
-        <VerticalStackLayout Spacing="10">
-            <Label Text="Erros: 0 of 6"
+    <Grid  RowDefinitions=".5*,.4*" BackgroundColor="White">
+        <VerticalStackLayout Spacing="5">
+            <Label Text="{Binding GameStatus}"
                FontAttributes="Bold"
                HorizontalOptions="Center"
+               Margin="0,15,0,0"
                TextColor="{StaticResource letters}"/>
-            <Image Source="img0.jpg"  HeightRequest="200"/>
+            <Image Source="{Binding CurrentImage}"  HeightRequest="200"/>
             <Label FontSize="40"
                    HorizontalOptions="Center"
                    Text="{Binding Spotlight}"
@@ -20,6 +21,7 @@
                     TextColor="{StaticResource letters}"
                    />
             <Label Text="{Binding  Message}"
+                   FontAttributes="Bold"
                    FontSize="Large"
                    HorizontalOptions="Center"
                     TextColor="{StaticResource letters}"
@@ -29,14 +31,15 @@
                 Text="Reset"
                 WidthRequest="100"
                 BackgroundColor="Black"
+                
                 />
-        </VerticalStackLayout>
-        <FlexLayout Grid.Row="1" Wrap="Wrap" JustifyContent="SpaceEvenly"
+        </VerticalStackLayout >
+        <FlexLayout  Grid.Row="1" Wrap="Wrap" JustifyContent="SpaceEvenly"
                     BindableLayout.ItemsSource="{Binding Characters}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
-                    <Button HeightRequest="50"
-                    WidthRequest="50"
+                    <Button HeightRequest="48"
+                    WidthRequest="48"
                     Text="{Binding .}"
                     Clicked="Button_Clicked"/>
 

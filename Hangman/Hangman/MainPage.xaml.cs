@@ -8,7 +8,11 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
 
     public string Message
     {
-        get => message; 
+        get
+        {
+            return message;
+        }
+
         set
         {
             message = value;
@@ -25,6 +29,14 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
         }
     }
 
+    public string GameStatus
+    {
+        get => gameStatus; set
+        {
+            gameStatus = value;
+            OnPropertyChanged();
+        }
+    }
     public List<char> Characters
     {
         get => characters; set
@@ -33,18 +45,38 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
+    public string CurrentImage
+    {
+        get => currentImage; set
+        {   
+            currentImage = value;
+            OnPropertyChanged();
+        }
+    }
+
+
     #endregion
     #region Fields
     List<string> words = new List<string>(){
        "hola",
        "adios"
 };
+
+
     string answer = "";
     private string spotlight;
     List<char> guessed = new List<char>();
     private List<char> characters = new List<char>();
-    private string message;
+    private string message = "You Can Is To Easy" ;
+    int mistakes = 0;
+    private string gameStatus = "Erros: 0 of 6";
+    int maxWrong = 6;
+    private string currentImage = "img0.jpg" ;
+
     #endregion
+
+
     public MainPage()
     {
         InitializeComponent();
@@ -90,9 +122,28 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
             CalculateWord(answer, guessed);
             CheckIfWon();
         }
+        else if (answer.IndexOf(letter) == -1)
+        {
+            mistakes++;
+            CurrentImage = $"img{mistakes}.jpg";
+            UpdateStatus();
+            CheckIfGameLost();
+        }
 
     }
 
+    private void CheckIfGameLost()
+    {
+        if (mistakes == maxWrong)
+        {
+            Message = "You Lost!!!";
+        }
+    }
+
+    private void UpdateStatus()
+    {
+        GameStatus = $"Erros: {mistakes} of {maxWrong}";
+    }
     private void CheckIfWon()
     {
         if (Spotlight.Replace(" ", "") == answer)
